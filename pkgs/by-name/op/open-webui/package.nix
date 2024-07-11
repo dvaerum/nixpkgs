@@ -2,7 +2,7 @@
   lib,
   buildNpmPackage,
   fetchFromGitHub,
-  python3,
+  python311,
   nixosTests,
 }:
 let
@@ -40,7 +40,7 @@ let
     '';
   };
 in
-python3.pkgs.buildPythonApplication rec {
+python311.pkgs.buildPythonApplication rec {
   inherit pname version src;
   pyproject = true;
 
@@ -61,7 +61,7 @@ python3.pkgs.buildPythonApplication rec {
     "psycopg2-binary"
   ];
 
-  dependencies = with python3.pkgs; [
+  dependencies = with python311.pkgs; [
     aiohttp
     alembic
     anthropic
@@ -121,8 +121,7 @@ python3.pkgs.buildPythonApplication rec {
     youtube-transcript-api
   ];
 
-  build-system = with python3.pkgs; [ hatchling ];
-
+  build-system = with python311.pkgs; [ hatchling ];
 
   pythonImportsCheck = [ "open_webui" ];
 
